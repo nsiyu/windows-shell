@@ -3,6 +3,8 @@
 #include <string.h>
 #include "Shell.h"
 #include <iostream>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_HISTORY_LENGTH 1024
@@ -10,7 +12,7 @@
 //Runs the program
 void Shell::run() {
     while (true) {
-        std::cout << get_current_dir();
+        std::cout << get_current_dir() + ">";
         fgets(input, MAX_LINE_LENGTH, stdin);
         parse_input(args, input);
         if (strcmp(args[0], "exit") == 0) {
@@ -21,6 +23,9 @@ void Shell::run() {
         }
         else if (strcmp(args[0], "cls") == 0) {
             cls();
+        }
+        else if (strcmp(args[0], "dir") == 0) {
+            dir();
         }
         else {
             std::cout << "\'" << args[0] << "\'" << " is not recognized as an internal or external command," << std::endl;
@@ -63,6 +68,11 @@ void Shell::parse_input(char** args, char* input) {
         }
     }
     args[i] = NULL;
+}
+
+void Shell::dir() {;
+    for (const auto& entry : fs::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
 }
 
 //Changes from one directory to another

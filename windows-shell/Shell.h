@@ -20,6 +20,7 @@ public:
     void handle_cd_command(char** args);
     std::string get_current_dir();
     std::string get_computer_name();
+    void cls();
     Shell() {
         std::cout << "Microsoft Windows [Version 10.0.22621.963]" << std::endl;
         std::cout << "(c)Microsoft Corporation.All rights reserved." << std::endl << std::endl;

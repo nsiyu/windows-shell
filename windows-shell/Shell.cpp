@@ -19,6 +19,9 @@ void Shell::run() {
         else if (strcmp(args[0], "cd") == 0) {
             handle_cd_command(args);
         }
+        else if (strcmp(args[0], "cls") == 0) {
+            cls();
+        }
         else {
             std::cout << "\'" << args[0] << "\'" << " is not recognized as an internal or external command," << std::endl;
             std::cout << "operable program or batch file." << std::endl;
@@ -95,4 +98,8 @@ std::string Shell::get_computer_name() {
         // Return an empty string on error
         return "";
     }
+}
+
+void Shell::cls() {
+    std::system("cls");
 }

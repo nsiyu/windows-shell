@@ -3,6 +3,7 @@
 A simple command line interface (CLI) for Windows written in C++.
 
 ## Features
+![SS](https://user-images.githubusercontent.com/114196475/208280744-ed215bb0-ada7-4301-a8a7-988e5abe0ffc.png)
 
 - Change directory (`cd`)
 - List files in a directory (`dir`)

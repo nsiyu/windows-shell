@@ -71,7 +71,7 @@ void Shell::parse_input(char** args, char* input) {
 }
 
 void Shell::dir() {;
-    for (const auto& entry : fs::directory_iterator(path))
+    for (const auto& entry : fs::directory_iterator(working_directory))
         std::cout << entry.path() << std::endl;
 }
 
@@ -81,8 +81,24 @@ void Shell::handle_cd_command(char** args) {
         fprintf(stderr, "Error: expected a directory path\n");
     }
     else {
-        if (SetCurrentDirectory(input) == 0) {
-            fprintf(stderr, "Error: failed to change directory\n");
+        std::string temp_working = working_directory;
+        if (strcmp(args[1],"..") == 0) {
+            int i = working_directory.size() - 1;
+            while (working_directory[i] != '\\') {
+                if (working_directory[i] == ':') {
+                    return;
+                }
+                i--;
+            }
+            working_directory = working_directory.substr(0, i);
+            SetCurrentDirectory(working_directory.c_str());
+        }
+        else {
+            working_directory = working_directory + '\\' + args[1];
+            if (!SetCurrentDirectory(working_directory.c_str())) {
+                working_directory = temp_working;
+                fprintf(stderr, "Error: failed to change directory\n");
+            }
         }
     }
 }
@@ -110,6 +126,7 @@ std::string Shell::get_computer_name() {
     }
 }
 
+//Clears terminal
 void Shell::cls() {
     std::system("cls");
 }

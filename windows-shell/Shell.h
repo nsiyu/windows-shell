@@ -3,6 +3,7 @@
 #define MAX_HISTORY_LENGTH 1024
 
 #include <string>
+#include <windows.h>
 #include <iostream>
 class Shell {
 private:
@@ -24,9 +25,9 @@ public:
     std::string get_computer_name();
     void cls();
     Shell() {
-        std::cout << "Microsoft Windows [Version 10.0.22621.963]" << std::endl;
-        std::cout << "(c)Microsoft Corporation.All rights reserved." << std::endl << std::endl;
+        std::cout << "My Personal Terminal [Version 0.1]" << std::endl;
+        std::cout << "(c)nsiyu.All rights reserved." << std::endl << std::endl;
         working_directory += "C:\\Users\\" + get_computer_name();
-        path += "C:/Users/" + get_computer_name();    
+        SetCurrentDirectory(working_directory.c_str());
     }
 };

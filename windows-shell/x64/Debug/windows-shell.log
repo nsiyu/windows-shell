@@ -1,2 +1,5 @@
 ﻿  Shell.cpp
+C:\Users\nsiyu\OneDrive\Desktop\Programming\Projects\windows-shell\windows-shell\Shell.cpp(86,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
   windows-shell.vcxproj -> C:\Users\nsiyu\OneDrive\Desktop\Programming\Projects\windows-shell\x64\Debug\windows-shell.exe
